@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Happy Birthday!!!</title></head>
+        <style>
+            body{background-color: rgb(228, 163, 219);}
+            h1{text-align: center;
+            font-family: cursive;
+        color: rgb(107, 62, 4);}
+        .birthday_wohoo{ background-color: rgba(250,250,250,1);
+            padding: 30px;
+        border-radius: 12px;
+        max-width: 800px;
+        margin: 40px auto;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        gap:15px;
+        flex-wrap: wrap;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);}
+             h1{text-align: center;
+                font-size: 50px;
+                font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;}
+        .inputname{ margin: 15px 0;
+        text-align: center;}
+        .inputname label{
+            display: block;
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: larger;
+            font-weight: bold;
+            color: rgb(83, 54, 10);
+        }.bg_music{
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+        audio{
+            border-radius: 20px;
+            outline:none;
+            box-shadow: 0 5px 18px rgb(173, 8, 151);
+        }
+        #Input_name{ padding: 8px 18px;
+            font-size: larger;
+            border: 2px solid rgb(173, 8, 151);
+            border-radius: 50px;
+            text-align: center;
+            color: rgb(82, 40, 6);
+            font-family: unset;}
+            .img-con{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
+            .balloon-gif{
+                max-width: 200px;
+                height: auto;
+            }
+             @keyframes slide{
+                0%{
+                    transform: translateY(80vw);
+                }
+                50%{
+                    transform: translateY(0vw);
+                }
+                100%{
+                    transform: translateY(-150px);
+                }
+             }
+            .movement{
+                animation: slide 10s infinite linear;
+            }
+            .popup_msg{
+                position: fixed;
+                top: 0;
+                left:0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.2);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index:1000;
+            }
+            .message{
+                background: #e2f76c;
+                border: 20px;
+                border-radius: 30px;
+                text-align: center;
+                padding: 40px;
+                position: relative;
+                width: 90%;
+                font-family: cursive;
+                box-shadow: 0 8px 24px rgba(201, 87, 87, 0.2)
+            }
+            .message h2{
+                color:blueviolet;
+                font-size: 30px;
+            }
+            .message h3{
+                color: blue;
+            }
+            .btns{
+                margin-top: 20px;
+                display: flex;
+                gap:180px;
+                position: relative;
+                min-height: 20px;
+            }
+            .yes-btn{
+                background-color: chartreuse;
+                padding: 30px;
+                border: 2px solid;
+                border-radius: 40px;
+                color: darkblue;
+                font-family: cursive;
+            }
+            .no-btn{
+                background-color: rgb(224, 43, 43);
+                border: 2px solid;
+                border-radius: 40px;
+                padding: 30px;
+                position: relative;
+                transition: all 0.1s ease;
+            }
+        </style>
+        <body>
+            <div class="birthday_wohoo">
+                <div class="header">
+                <img src="HBD.gif" style="display:block;margin:0 auto;" alt="HBD banner!"/>
+             <h1 id="greeting"><u><b>HAPPY BIRTHDAYYY!!!</b></u><span id="namespan"></span>!!!</h1>
+             <div class="inputname">
+                <label for="Input_name">Birthday person's name: </label>
+                <input type="text" id="Input_name" placeholder="Type name here (e.g. Shino)"
+                oninput="updateName()" />
+             </div>
+             <div class="bg_music">
+                <audio id="bgMusic" loop controls autoplay>
+                    <source src="HBDsong.mp3" type="audio/mpeg">
+                    Your browser does not support the audio!
+                </audio>
+            </div>
+            <div class="img-con">
+             <img src="dancing.gif" width="400" alt="DANCING CAT" class="header-gif">
+             <img src="balloon.gif" width="600" alt="BALLOONS" class="balloon-gif">
+            </div>
+            </div>
+             <textarea class="custom_msg" rows="10" cols="70" placeholder="Write your custom message here...">
+                Wishing you a faboulous birthday filled with lots and lots of happiness, endless laughter and sweet moments!
+                Today is your day, so enjoy every bit of it! :DDDD</textarea>
+                    <div class="movement">
+                    <img src="cat1.jpg" width="400" alt= "Cute cat">
+                    </div>
+            </div>
+    <!--SO far so good!I used internet to discover a website on whichthe sounds are
+    not copyrighted.I learnt adding buttons by making my last project, so lets add
+    buttons and try to make them look good!-->
+    <div id="popup" class="popup_msg">
+        <div class="message">
+            <h2>HEY! I wanna ask ya a quick question!</h2>
+            <h3>I have a gift for you!Do you wanna see it?</h3>
+            <div class="btns">
+                <btns class="btn yes-btn" onclick="goToSecondPage()">YESSSSSS!!</btns>
+                <btns id="nobtn" class="btn no-btn" onmouseover="moveButton()" onclick="moveButton()">nah</btns>
+            </div>
+        </div>
+    </div>
+            <script>
+                function updateName(){
+                    const inputval=document.getElementByID('Input_name').value.trim();
+                    const namespan=document.getElementById('namespan');
+                    if (inputval!==""){
+                        namespan.textContent=" " + inputval.toUpperCase();
+                    }
+                    else{
+                     namespan.textContent="";
+                }
+            }
+            document.addEventListener('click',function(){
+            const music=document.getElementById('bgMusic');
+            if(music["paused"]){
+                music.play();
+            }
+            },{once: true});
+            function goToSecondPage(){
+                window.location.href= "Second.html";
+            }
+            function moveButton()
+            {
+                const nobtn=document.getElementById('nobtn');
+                nobtn.style.position='fixed';
+                const maxX=window.innerWidth-nobtn.offsetWidth-20;
+                const maxY= window.innerHeight-nobtn.offsetHeight-20;
+                const randomX= Math.max(20, Math.floor((Math.random()*maxX)));
+                const randomY= Math.max(20, Math.floor((Math.random*maxY)));
+                nobtn.style.left=randomX+'px';
+                nobtn.style.top=randomY+'px';
+            }
+            function showmessage(){
+                const msg= document.getElementById('popup');
+                msg.style.display='flex';
+            }
+            setTimeout(showmessage, 27000);
+            </script>
+        </body>
+</html>
